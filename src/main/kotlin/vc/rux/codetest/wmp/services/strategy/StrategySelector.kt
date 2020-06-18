@@ -1,5 +1,6 @@
 package vc.rux.codetest.wmp.services.strategy
 
+import org.springframework.stereotype.Service
 import vc.rux.codetest.wmp.models.Customer
 import vc.rux.codetest.wmp.models.MoneySplit
 import vc.rux.codetest.wmp.models.Strategy
@@ -11,6 +12,7 @@ import kotlin.Int.Companion.MAX_VALUE
  * This strategy selector is looking for the available
  * strategies for given customer and picks the one with minimum max risk
  */
+@Service
 class StrategySelector(
     private val strategies: List<Strategy>
 ) : IStrategySelector {

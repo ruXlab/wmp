@@ -7,6 +7,7 @@ Wealth management platform _(code test)_
 
 * The age of Bob given in example is 59 not 51 as it was in task
 * `StrategySelector` when multiple strategies available chooses the one with minimal risk 
+* For convenience and not expressed preferences the sample csv provided are located in the resources folder but it could be easily configured in the bean factory
 
 
 ### Tradeoff / room for improvements

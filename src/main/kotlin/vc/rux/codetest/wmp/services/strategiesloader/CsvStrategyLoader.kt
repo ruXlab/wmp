@@ -12,7 +12,7 @@ import vc.rux.codetest.wmp.services.ICsvStrategyLoader
 import java.io.InputStream
 
 @Service
-class CsvStrategiesLoader : ICsvStrategyLoader {
+class CsvStrategyLoader : ICsvStrategyLoader {
     private val csvReader by lazy {
         val schema = CsvSchema.emptySchema().withHeader()
         val csvMapper = CsvMapper()

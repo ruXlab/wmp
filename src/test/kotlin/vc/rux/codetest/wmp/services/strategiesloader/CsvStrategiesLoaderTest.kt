@@ -15,7 +15,7 @@ internal class CsvStrategiesLoaderTest {
 
     @BeforeEach
     fun init() {
-        service = CsvStrategiesLoader()
+        service = CsvStrategyLoader()
     }
 
     @Test
