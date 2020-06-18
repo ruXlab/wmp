@@ -50,6 +50,17 @@ internal class FpsServiceTest {
             .containsExactly(1, 2, 3)
     }
 
+    fun `if no trades provided cliend will no be called`() {
+        val fpsService = FpsService(fpsClient, 2)
+
+        // when
+        fpsService.executeTrades(listOf())
+
+        // then
+        verify(exactly = 0) { fpsClient.executeTrades(any()) }
+
+    }
+
     private fun randomPortfolio() = Portfolio(Random.nextInt(), Random.nextInt(), Random.nextInt())
 
 }

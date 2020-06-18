@@ -23,7 +23,7 @@ class FpsClient(
 
     override fun executeTrades(trades: List<Pair<CustomerId, Portfolio>>) {
         val responseEntity = restTemplate.postForEntity<String>("$baseUrl/execute", trades.toDto())
-        if (responseEntity.statusCode == HttpStatus.CREATED)
+        if (responseEntity.statusCode != HttpStatus.CREATED)
             throw HttpClientErrorException(responseEntity.statusCode, "Got non 201 response but it's required")
     }
 }

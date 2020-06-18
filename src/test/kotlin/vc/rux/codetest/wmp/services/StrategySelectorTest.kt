@@ -2,11 +2,11 @@ package vc.rux.codetest.wmp.services
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import vc.rux.codetest.wmp.models.*
+import vc.rux.codetest.wmp.customerGenerator
+import vc.rux.codetest.wmp.models.MoneySplit
+import vc.rux.codetest.wmp.models.Strategy
+import vc.rux.codetest.wmp.models.StrategyId
 import vc.rux.codetest.wmp.services.strategy.StrategySelector
-import java.time.LocalDate
-import kotlin.math.absoluteValue
-import kotlin.random.Random
 
 internal class StrategySelectorTest {
     private val defaultMoneySplit = MoneySplit.fromPercent(0, 50, 50) // doesn't matter for this test, could be rather mocked
@@ -69,11 +69,4 @@ internal class StrategySelectorTest {
 
 
 
-    private fun customerGenerator(yearsToRetire: Int, riskLevel: Int) = Customer(
-        customerId = CustomerId(Random.nextLong().absoluteValue),
-        riskLevel = riskLevel,
-        email = "customer${System.currentTimeMillis()}@email.com",
-        retirementAge = yearsToRetire,
-        dateOfBirth = LocalDate.of(2000, 1, 1)
-    )
 }

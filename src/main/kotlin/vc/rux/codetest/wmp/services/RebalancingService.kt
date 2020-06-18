@@ -16,18 +16,24 @@ class RebalancingService(
     private val portfolioRebalancer: PortfolioRebalancer
 ) {
 
-    fun rebalanceCustomer(customer: Customer): Portfolio {
+    fun rebalanceCustomer(customer: Customer): Portfolio? = try {
         val strategy = strategySelector.selectStrategy(customer)
         val customerPortfolio = fpsService.getCustomerPortfolio(customer.customerId)
-        return portfolioRebalancer.rebalance(strategy.moneySplit, customerPortfolio)
+        val adjust = portfolioRebalancer.rebalance(strategy.moneySplit, customerPortfolio)
+        log.info("rebalanceCustomer #{}: using strategy #{} from current portfolio {} need to adjust with {}",
+            customer.customerId.value, strategy.strategyId.strategyId, customerPortfolio, adjust)
+        adjust
+    } catch (e: Exception) {
+        log.error("Error occuried while rebalancing customer {}", customer.customerId.value, e)
+        null
     }
 
     fun rebalanceCustomers() {
         val portfoliosToUpdate = customers
-            .map { it to rebalanceCustomer(it) }
+            .mapNotNull { customer -> rebalanceCustomer(customer)?.let { customer.customerId to it } }
             .filter { (_, amendPortfolio) -> !amendPortfolio.isEmpty }
-            .map { (customer, amendPortfolio) -> customer.customerId to amendPortfolio }
-        log.info("rebalanceCustomersL found {} portfolios to be rebalanced: {}",
+            .map { (customerId, amendPortfolio) -> customerId to amendPortfolio }
+        log.info("rebalanceCustomers found {} portfolios to be rebalanced: {}",
             portfoliosToUpdate.size, portfoliosToUpdate.joinToString(", ") { "${it.first.value} with ${it.second}"})
         fpsService.executeTrades(portfoliosToUpdate)
     }

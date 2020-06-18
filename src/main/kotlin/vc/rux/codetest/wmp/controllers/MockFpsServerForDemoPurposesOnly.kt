@@ -33,6 +33,7 @@ class MockFpsServerForDemoPurposesOnly {
     }
 
     @PostMapping("/execute")
+    @ResponseStatus(HttpStatus.CREATED)
     fun updateTrades(@RequestBody body: List<Map<String, Any>>) {
         log.warn("updateTrades got new request: {} ", body)
         body.forEach { statuses[(it["customerId"] as Int).toString()] = it }
@@ -41,6 +42,5 @@ class MockFpsServerForDemoPurposesOnly {
     companion object {
         private val log = LoggerFactory.getLogger(MockFpsServerForDemoPurposesOnly::class.java)
     }
-
 
 }

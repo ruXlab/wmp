@@ -1,6 +1,5 @@
 package vc.rux.codetest.wmp
 
-import org.apache.tomcat.util.file.ConfigurationSource
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -10,11 +9,8 @@ import vc.rux.codetest.wmp.fpsclient.FpsClient
 import vc.rux.codetest.wmp.fpsclient.IFpsClient
 import vc.rux.codetest.wmp.models.Customer
 import vc.rux.codetest.wmp.models.Strategy
-import vc.rux.codetest.wmp.services.ICsvStrategyLoader
-import vc.rux.codetest.wmp.services.IStrategySelector
 import vc.rux.codetest.wmp.services.customersloader.CsvCustomersLoader
 import vc.rux.codetest.wmp.services.strategiesloader.CsvStrategyLoader
-import vc.rux.codetest.wmp.services.strategy.StrategySelector
 
 @Configuration
 class Configuration {

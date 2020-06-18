@@ -7,7 +7,6 @@ import org.junit.jupiter.api.assertThrows
 import vc.rux.codetest.wmp.models.Customer
 import vc.rux.codetest.wmp.models.CustomerId
 import vc.rux.codetest.wmp.services.ICsvCustomersLoader
-import vc.rux.codetest.wmp.services.customersloader.CsvCustomersLoader
 import java.time.LocalDate
 
 internal class CsvCustomersLoaderTest {

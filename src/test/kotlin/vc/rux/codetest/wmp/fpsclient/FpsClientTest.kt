@@ -1,12 +1,10 @@
 package vc.rux.codetest.wmp.fpsclient
 
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.springframework.http.HttpStatus
-import org.springframework.http.MediaType
 import org.springframework.http.MediaType.APPLICATION_JSON
 import org.springframework.test.web.client.MockRestServiceServer
 import org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo
@@ -14,7 +12,6 @@ import org.springframework.test.web.client.response.MockRestResponseCreators.wit
 import org.springframework.web.client.RestClientException
 import org.springframework.web.client.RestTemplate
 import vc.rux.codetest.wmp.models.CustomerId
-import vc.rux.codetest.wmp.models.MoneySplit
 import vc.rux.codetest.wmp.models.Portfolio
 
 internal class FpsClientTest {
@@ -36,21 +33,15 @@ internal class FpsClientTest {
     fun `can retrieve customer details`() {
         // given
         restServiceServer
-            .expect { requestTo("$targetFakeBaseUrl/customer/42") }
-            .andRespond {
-                withStatus(HttpStatus.OK).contentType(APPLICATION_JSON).body("""
-                    {
-                    "customerId": 123,
-                    "stocks": 6700,
-                    "bonds": 1200,
-                    "cash": 400
-                    }
-                """.trimIndent()).createResponse(it)
-            }
-
+            .expect(requestTo("$targetFakeBaseUrl/customer/42"))
+            .andRespond(
+                withStatus(HttpStatus.OK)
+                    .contentType(APPLICATION_JSON)
+                    .body(""" { "customerId": 42, "stocks": 6700, "bonds": 1200, "cash": 400  }""")
+            )
 
         // when
-        val portfolio = fpsClient.getCustomerPortfolio(CustomerId(123))
+        val portfolio = fpsClient.getCustomerPortfolio(CustomerId(42))
 
 
         // then
@@ -66,10 +57,8 @@ internal class FpsClientTest {
     @Test
     fun `when customer information can not be retrieved the exception is thrown`() {
         // given
-        restServiceServer.expect { requestTo(targetFakeBaseUrl) }
-            .andRespond {
-                withStatus(HttpStatus.BAD_GATEWAY).body("Bad Gateway or any error").createResponse(it)
-            }
+        restServiceServer.expect(requestTo("$targetFakeBaseUrl/customer/123"))
+            .andRespond(withStatus(HttpStatus.BAD_GATEWAY).body("Bad Gateway or any error"))
 
 
         // when and then
@@ -81,10 +70,8 @@ internal class FpsClientTest {
     @Test
     fun `when trades can not be updated the exception is thrown`() {
         // given
-        restServiceServer.expect { requestTo(targetFakeBaseUrl) }
-            .andRespond {
-                withStatus(HttpStatus.BAD_GATEWAY).body("Bad Gateway or any error").createResponse(it)
-            }
+        restServiceServer.expect(requestTo("$targetFakeBaseUrl/execute"))
+            .andRespond(withStatus(HttpStatus.BAD_GATEWAY).body("Bad Gateway or any error"))
 
 
         // when and then

@@ -1,8 +1,8 @@
 package vc.rux.codetest.wmp.models
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.time.LocalDate
-import org.assertj.core.api.Assertions.*
 
 internal class CustomerTest {
     @Test

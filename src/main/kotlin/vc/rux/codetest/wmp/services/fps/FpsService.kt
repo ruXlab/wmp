@@ -19,6 +19,7 @@ class FpsService(
     }
 
     override fun executeTrades(trades: List<Pair<CustomerId, Portfolio>>) {
+        if (trades.isEmpty()) return
         trades.chunked(batchSize.toInt()).forEach(fpsClient::executeTrades)
     }
 }
