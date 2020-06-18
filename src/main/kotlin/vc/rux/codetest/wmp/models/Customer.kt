@@ -10,9 +10,15 @@ data class Customer(
     val riskLevel: Int,
     val retirementAge: Int
 ) {
+    val age: Long
+        get() = age()
+
+    val yearsToRetire: Long
+        get() = yearsToRetire()
+
     fun age(toDate: LocalDate = LocalDate.now()): Long
         = YEARS.between(dateOfBirth, toDate)
 
-    fun yearsToRetire(today: LocalDate): Long
+    fun yearsToRetire(today: LocalDate = LocalDate.now()): Long
         = retirementAge - age(today)
 }
