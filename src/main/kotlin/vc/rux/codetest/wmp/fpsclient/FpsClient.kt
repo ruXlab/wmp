@@ -13,7 +13,7 @@ class FpsClient(
     private val restTemplate: RestTemplate
 ) : IFpsClient {
 
-    fun getCustomerPortfolio(customerId: CustomerId): Portfolio {
+    override fun getCustomerPortfolio(customerId: CustomerId): Portfolio {
         val responseEntity = restTemplate.getForEntity<FpsCustomerPortfolioDto>("$baseUrl/customer/{customerId}", customerId.value)
         if (responseEntity.statusCode != HttpStatus.OK)
             throw HttpClientErrorException(responseEntity.statusCode, "Got non 200 response, hasBody: ${responseEntity.body == null}")
@@ -21,7 +21,7 @@ class FpsClient(
             ?: throw HttpClientErrorException(responseEntity.statusCode, "Has no body in response!")
     }
 
-    fun executeTrades(trades: List<Pair<CustomerId, Portfolio>>) {
+    override fun executeTrades(trades: List<Pair<CustomerId, Portfolio>>) {
         val responseEntity = restTemplate.postForEntity<String>("$baseUrl/execute", trades.toDto())
         if (responseEntity.statusCode == HttpStatus.CREATED)
             throw HttpClientErrorException(responseEntity.statusCode, "Got non 201 response but it's required")

@@ -14,4 +14,5 @@ Wealth management platform _(code test)_
 * Each component(csv parser, evaluator, fps client) could be implemented as independent module to reduce coupling
 * Number of additional validations could be implemented. For instance sum of wealth distributions must equal to 100%
 * Instead of loading everything in memory streaming could be used instead
-* If there are a considerable amount of strategies and parameters it worth to ditribute them in indexed buckets to increase lookup speed
+* If there are a considerable amount of strategies and parameters it worth to distribute them in indexed buckets to increase lookup speed
+* `FPSService` can execute requests in parallel allowing parallel computation
