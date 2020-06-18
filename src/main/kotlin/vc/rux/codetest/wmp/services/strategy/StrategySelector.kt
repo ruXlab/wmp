@@ -1,9 +1,10 @@
-package vc.rux.codetest.wmp.services
+package vc.rux.codetest.wmp.services.strategy
 
 import vc.rux.codetest.wmp.models.Customer
 import vc.rux.codetest.wmp.models.MoneySplit
 import vc.rux.codetest.wmp.models.Strategy
 import vc.rux.codetest.wmp.models.StrategyId
+import vc.rux.codetest.wmp.services.IStrategySelector
 import kotlin.Int.Companion.MAX_VALUE
 
 /**
@@ -25,7 +26,7 @@ class StrategySelector(
             strategyId = StrategyId.DEFAULT_STRATEGY_ID,
             risk = 0..MAX_VALUE,
             yearsToRetirement = 0..MAX_VALUE,
-            moneySplit = MoneySplit(0, 100, 0)
+            moneySplit = MoneySplit.fromPercent(0, 100, 0)
         )
     }
 }

@@ -13,6 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import vc.rux.codetest.wmp.fpsclient.IFpsClient
 import vc.rux.codetest.wmp.models.CustomerId
 import vc.rux.codetest.wmp.models.Portfolio
+import vc.rux.codetest.wmp.services.fps.FpsService
 import kotlin.random.Random
 
 @ExtendWith(MockKExtension::class)

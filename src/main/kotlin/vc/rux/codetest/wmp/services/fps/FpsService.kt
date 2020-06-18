@@ -1,9 +1,9 @@
-package vc.rux.codetest.wmp.services
+package vc.rux.codetest.wmp.services.fps
 
-import vc.rux.codetest.wmp.fpsclient.FpsClient
 import vc.rux.codetest.wmp.fpsclient.IFpsClient
 import vc.rux.codetest.wmp.models.CustomerId
 import vc.rux.codetest.wmp.models.Portfolio
+import vc.rux.codetest.wmp.services.IFpsService
 
 class FpsService(
     private val fpsClient: IFpsClient,

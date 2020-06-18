@@ -16,3 +16,5 @@ Wealth management platform _(code test)_
 * Instead of loading everything in memory streaming could be used instead
 * If there are a considerable amount of strategies and parameters it worth to distribute them in indexed buckets to increase lookup speed
 * `FPSService` can execute requests in parallel allowing parallel computation
+* `BigDecimal` has be used everywhere instead of Double
+* If operator overloading is acceptable in the team `MoneySplit` could be multiplied by `Portfolio` for readability  

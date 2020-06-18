@@ -32,7 +32,7 @@ internal class CsvStrategiesLoaderTest {
                 Strategy(strategyId = StrategyId(1),
                     risk = IntRange(0, 3),
                     yearsToRetirement = IntRange(20, 30),
-                    moneySplit = MoneySplit(20, 20, 60)
+                    moneySplit = MoneySplit.fromPercent(20, 20, 60)
                 )
             )
 
@@ -41,7 +41,7 @@ internal class CsvStrategiesLoaderTest {
                 Strategy(strategyId = StrategyId(2),
                     risk = IntRange(0, 3),
                     yearsToRetirement = IntRange(10, 20),
-                    moneySplit = MoneySplit(10, 20, 70)
+                    moneySplit = MoneySplit.fromPercent(10, 20, 70)
                 )
             )
 
@@ -50,7 +50,7 @@ internal class CsvStrategiesLoaderTest {
                 Strategy(strategyId = StrategyId(3),
                     risk = IntRange(6, 9),
                     yearsToRetirement = IntRange(20, 30),
-                    moneySplit = MoneySplit(10, 0, 90)
+                    moneySplit = MoneySplit.fromPercent(10, 0, 90)
                 )
             )
     }

@@ -9,7 +9,7 @@ internal fun StrategyCsvRecord.toModel(): Strategy = Strategy(
     strategyId = StrategyId(strategyId),
     risk = IntRange(minRiskLevel, maxRiskLevel),
     yearsToRetirement = IntRange(minYearsToRetirement, maxYearsToRetirement),
-    moneySplit = MoneySplit(stocksPercentage, cashPercentage, bondsPercentage)
+    moneySplit = MoneySplit.fromPercent(stocksPercentage, cashPercentage, bondsPercentage)
 )
 
 internal fun Iterable<StrategyCsvRecord>.toModels(): List<Strategy>
