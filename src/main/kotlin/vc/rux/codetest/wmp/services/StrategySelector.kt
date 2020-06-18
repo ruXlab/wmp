@@ -4,6 +4,7 @@ import vc.rux.codetest.wmp.models.Customer
 import vc.rux.codetest.wmp.models.MoneySplit
 import vc.rux.codetest.wmp.models.Strategy
 import vc.rux.codetest.wmp.models.StrategyId
+import kotlin.Int.Companion.MAX_VALUE
 
 /**
  * This strategy selector is looking for the available
@@ -22,8 +23,8 @@ class StrategySelector(
     companion object {
         val DEFAULT_STRATEGY = Strategy(
             strategyId = StrategyId.DEFAULT_STRATEGY_ID,
-            risk = 0..Int.MAX_VALUE,
-            yearsToRetirement = 0..Int.MAX_VALUE,
+            risk = 0..MAX_VALUE,
+            yearsToRetirement = 0..MAX_VALUE,
             moneySplit = MoneySplit(0, 100, 0)
         )
     }
